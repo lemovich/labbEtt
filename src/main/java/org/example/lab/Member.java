@@ -1,14 +1,16 @@
 package org.example.lab;
 
 public class Member {
+    private static int nextId = 1;
     private static final int MAX_ACTIVE_LOANS = 3;
 
-    private int id;
+    private final int id;
     private String name;
     private int activeLoans;
 
-    public Member(int id, String name) {
-        this.id = id;
+    public Member(String name) {
+        this.id = nextId;
+        nextId++;
         this.name = name;
         this.activeLoans = 0;
     }
