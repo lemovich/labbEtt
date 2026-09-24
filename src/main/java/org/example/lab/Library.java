@@ -84,6 +84,25 @@ public class Library {
         return true;
     }
 
+    public boolean returnBook(String isbn) {
+        int bookIndex = findBookIndex(isbn);
+        if (bookIndex == -1) {
+            System.out.println("No book with ISBN " + isbn + " was found.");
+            return false;
+        }
+
+        Member borrower = borrowedBy[bookIndex];
+        if (borrower == null) {
+            System.out.println("The book \"" + books[bookIndex].title() + "\" is not borrowed.");
+            return false;
+        }
+
+        borrower.registerReturn();
+        borrowedBy[bookIndex] = null;
+        System.out.println(borrower.getName() + " returned \"" + books[bookIndex].title() + "\".");
+        return true;
+    }
+
     public record Book(String isbn, String title, String author) {
     }
 }
