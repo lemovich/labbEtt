@@ -33,6 +33,7 @@ public class Library {
         }
         Member newMember = new Member(name);
         members[memberCount] = newMember;
+        IO.println(name + " registrerad med ID: " + newMember.getId());
         memberCount++;
         return newMember;
     }
@@ -101,8 +102,5 @@ public class Library {
         borrowedBy[bookIndex] = null;
         IO.println(borrower.getName() + " lämnade tillbaka \"" + books[bookIndex].title() + "\".");
         return true;
-    }
-
-    public record Book(String isbn, String title, String author) {
     }
 }

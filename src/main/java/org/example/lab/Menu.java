@@ -26,7 +26,8 @@ public class Menu {
         IO.print("Författare: ");
         String author = scanner.nextLine().trim();
 
-        Library.Book book = new Library.Book(isbn, title, author);
+
+        Book book = new Book(isbn, title, author);
         if (library.addBook(book)) {
             IO.println("Boken lades till!");
         }
@@ -37,9 +38,6 @@ public class Menu {
         String name = scanner.nextLine().trim();
 
         Member member = library.registerMember(name);
-        if (member != null) {
-            IO.println("Medlem registrerad med ID: " + member.getId());
-        }
     }
 
     public static void borrowBookFlow(Scanner scanner, Library library) {
