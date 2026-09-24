@@ -37,6 +37,53 @@ public class Library {
         return newMember;
     }
 
+    private int findBookIndex(String isbn) {
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].isbn().equalsIgnoreCase(isbn)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private Member findMemberById(int id) {
+        for (int i = 0; i < memberCount; i++) {
+            if (members[i].getId() == id) {
+                return members[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean borrowBook(String isbn, int memberId) {
+        int bookIndex = findBookIndex(isbn);
+        if (bookIndex == -1) {
+            System.out.println("No book with this ISBN " + isbn + " was found.");
+            return false;
+        }
+
+        if (borrowedBy[bookIndex] != null) {
+            System.out.println("The book \"" + books[bookIndex].title() + "\" is already borrowed.");
+            return false;
+        }
+
+        Member member = findMemberById(memberId);
+        if (member == null) {
+            System.out.println("No member with ID " + memberId + " was found.");
+            return false;
+        }
+
+        if (!member.canBorrowMore()) {
+            System.out.println(member.getName() + " has already borrowed max amount (3) of books.");
+            return false;
+        }
+
+        borrowedBy[bookIndex] = member;
+        member.registerLoan();
+        System.out.println(member.getName() + " borrowed \"" + books[bookIndex].title() + "\".");
+        return true;
+    }
+
     public record Book(String isbn, String title, String author) {
     }
 }
