@@ -12,6 +12,8 @@ public class Menu {
         IO.println("2. Registrera medlem");
         IO.println("3. Låna bok");
         IO.println("4. Lämna tillbaka bok");
+        IO.println("5. Sök bok (titel eller författare)");
+        IO.println("6. Visa alla böcker och status");
         IO.println("e. Avsluta");
         IO.print("Val: ");
     }
@@ -81,4 +83,14 @@ public class Menu {
         }
         return true;
     }
+    public static void searchBookFlow(Scanner scanner, Library library) {
+        IO.print("Sök (titel eller författare): ");
+        String query = scanner.nextLine().trim();
+        library.searchBooks(query);
+    }
+
+    public static void listAllBooksFlow(Library library) {
+        library.listAllBooks();
+    }
+
 }

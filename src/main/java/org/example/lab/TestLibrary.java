@@ -18,6 +18,8 @@ public class TestLibrary {
                 case "2" -> Menu.registerMemberFlow(scanner, library);
                 case "3" -> Menu.borrowBookFlow(scanner, library);
                 case "4" -> Menu.returnBookFlow(scanner, library);
+                case "5" -> Menu.searchBookFlow(scanner, library);
+                case "6" -> Menu.listAllBooksFlow(library);
                 case "e", "E" -> {
                     running = false;
                     IO.println("Avslutar programmet.");

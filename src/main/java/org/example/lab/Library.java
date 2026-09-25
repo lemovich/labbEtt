@@ -103,4 +103,41 @@ public class Library {
         IO.println(borrower.getName() + " lämnade tillbaka \"" + books[bookIndex].title() + "\".");
         return true;
     }
+
+    private void printBookLine(Book book, Member borrower) {
+        String status = (borrower != null) ? "Utlånad till " + borrower.getName() : "Tillgänglig";
+        System.out.println("- " + book.title() + " av " + book.author() + " (ISBN: " + book.isbn() + ") — " + status);
+    }
+
+    public void listAllBooks() {
+        if (bookCount == 0) {
+            System.out.println("Inga böcker är registrerade i biblioteket.");
+            return;
+        }
+        for (int i = 0; i < bookCount; i++) {
+            printBookLine(books[i], borrowedBy[i]);
+        }
+    }
+
+    public int searchBooks(String query) {
+        String lowerQuery = query.toLowerCase();
+        int matches = 0;
+
+        for (int i = 0; i < bookCount; i++) {
+            Book book = books[i];
+            boolean titleMatches = book.title().toLowerCase().contains(lowerQuery);
+            boolean authorMatches = book.author().toLowerCase().contains(lowerQuery);
+
+            if (titleMatches || authorMatches) {
+                printBookLine(book, borrowedBy[i]);
+                matches++;
+            }
+        }
+
+        if (matches == 0) {
+            System.out.println("Inga böcker matchade \"" + query + "\".");
+        }
+
+        return matches;
+    }
 }
