@@ -19,9 +19,6 @@ Programmet körs i en loop och visar en meny tills användaren väljer att avslu
 - `Menu` — hanterar all interaktion med användaren (inläsning och utskrifter)
 - `LibraryDemo` — programmets startpunkt, innehåller huvudloopen
 
-## Hur man kör programmet
-[Fyll i: t.ex. `mvn compile exec:java` eller hur du kör det i din IDE]
-
 ## Designval och reflektion
 
 ### Varför är `Book` en record men `Member` en vanlig klass?
